@@ -17,6 +17,7 @@ Bringing up the Docker Compose network with `site` instead of just using `up`, e
 - **php** - `:9000`
 - **redis** - `:6379`
 - **mailhog** - `:8025` 
+- **phpmyadmin** - `:8080`
 
 Three additional containers are included that handle Composer, NPM, and Artisan commands *without* having to have these platforms installed on your local computer. Use the following command examples from your project root, modifying them to fit your particular use case.
 
@@ -41,3 +42,8 @@ volumes:
 The current version of Laravel (8 as of today) uses MailHog as the default application for testing email sending and general SMTP work during local development. Using the provided Docker Hub image, getting an instance set up and ready is simple and straight-forward. The service is included in the `docker-compose.yml` file, and spins up alongside the webserver and database services.
 
 To see the dashboard and view any emails coming through the system, visit [localhost:8025](http://localhost:8025) after running `docker-compose up -d site`.
+
+
+## Create laravel project
+
+To create a laravel project, go to the `src` folder and run `docker-compose run --rm composer create-project laravel/laravel .`

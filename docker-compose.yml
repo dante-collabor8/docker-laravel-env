@@ -18,6 +18,7 @@ services:
       - redis
       - mysql
       - mailhog
+      - phpmyadmin
     networks:
       - laravel
 
@@ -35,9 +36,24 @@ services:
       MYSQL_ROOT_PASSWORD: secret
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
+    volumes:
+      - ./mysql:/var/lib/mysql
     networks:
       - laravel
-
+      
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+     - '8080:80'
+    environment:
+      PMA_HOST: mysql
+    networks:
+      - laravel
+  
   php:
     build:
       context: .
@@ -105,3 +121,5 @@ services:
       - 8025:8025
     networks:
       - laravel
+  
+  
